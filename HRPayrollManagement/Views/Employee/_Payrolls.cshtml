@@ -1,0 +1,51 @@
+﻿@model HRPayrollManagement.Models.Employee
+
+<div class="container mt-4">
+    <h3 class="text-primary mb-4">Payroll Details</h3>
+
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Salary</th>
+                <th>Bonus</th>
+                <th>Deductions</th>
+                <th>Payment Date</th>
+                <th>
+                    <button class="btn btn-info" value="Add" name="Operation">
+                        <i class="bi bi-plus-circle"></i> Add
+                    </button>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @for (int i = 0; i < Model?.Payrolls.Count; i++)
+            {
+                <tr>
+                    <td>
+                        @Html.TextBoxFor(m => Model.Payrolls[i].Salary, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => Model.Payrolls[i].Salary, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => Model.Payrolls[i].Bonus, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => Model.Payrolls[i].Bonus, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => Model.Payrolls[i].Deductions, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => Model.Payrolls[i].Deductions, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => Model.Payrolls[i].PaymentDate, new { @class = "form-control", type = "date" })
+                        @Html.ValidationMessageFor(m => Model.Payrolls[i].PaymentDate, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" value="Delete-@i" name="Operation">
+                            <i class="bi bi-trash"></i> Delete
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
